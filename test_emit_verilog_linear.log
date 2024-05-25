@@ -1,0 +1,225 @@
+Script started on 2024-05-25 11:29:48+01:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="144" LINES="12"]
+(base) ]0;zixian@LAPTOP119010134: ~[01;32mzixian@LAPTOP119010134[00m:[01;34m~[00m$ python Mase-DeepWok/[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kconda activate[K[K[K[K[K[K[K[Kdec[Kactivate
+(py_adls) ]0;zixian@LAPTOP119010134: ~[01;32mzixian@LAPTOP119010134[00m:[01;34m~[00m$ conda acivat[K[K[K[K[K[Kdeactivate
+(base) ]0;zixian@LAPTOP119010134: ~[01;32mzixian@LAPTOP119010134[00m:[01;34m~[00m$ conda a[Kdeactivate
+]0;zixian@LAPTOP119010134: ~[01;32mzixian@LAPTOP119010134[00m:[01;34m~[00m$ conda a c[K[K[Kactivate py-adls[K[K[K[K[K_adls
+(py_adls) ]0;zixian@LAPTOP119010134: ~[01;32mzixian@LAPTOP119010134[00m:[01;34m~[00m$ python Mase-DeepWok/machop/test/passes/graph/transforms/verilog/test_emit_verilog_linear.py 
+/home/zixian/Mase-DeepWok/machop/chop/passes/graph/analysis/verilog/test_verilog.py:6: UserWarning: Python runners and associated APIs are an experimental feature and subject to change.
+  from cocotb.runner import get_runner
+INFO       Set logging level to debug 
+DEBUG      graph():
+    %x : [num_users=1] = placeholder[target=x]
+    %flatten : [num_users=1] = call_function[target=torch.flatten](args = (%x,), kwargs = {start_dim: 1, end_dim: -1})
+    %fc1 : [num_users=1] = call_module[target=fc1](args = (%flatten,), kwargs = {})
+    %relu : [num_users=1] = call_function[target=torch.nn.functional.relu](args = (%fc1,), kwargs = {inplace: False})
+    %fc2 : [num_users=1] = call_module[target=fc2](args = (%relu,), kwargs = {})
+    %relu_1 : [num_users=1] = call_function[target=torch.nn.functional.relu](args = (%fc2,), kwargs = {inplace: False})
+    %fc3 : [num_users=1] = call_module[target=fc3](args = (%relu_1,), kwargs = {})
+    return fc3 
+DEBUG      Inferred arg & result dtype and precision for input node `x` using `fc1` 
+DEBUG      Inferred arg & result dtype and precision for implicit_func node `flatten` using `fc1` 
+DEBUG      Inferred result dtype and precision for module_related_func node `fc1` using `relu` 
+DEBUG      Inferred result dtype and precision for module_related_func node `relu` using `fc2` 
+DEBUG      Inferred result dtype and precision for module_related_func node `fc2` using `relu_1` 
+DEBUG      Inferred result dtype and precision for module_related_func node `relu_1` using `fc3` 
+DEBUG      Inferred result dtype and precision for module_related_func node `fc3` using its args 
+DEBUG      Inferred dtype and precision for output node `output` using `fc3` 
+INFO       Inspecting graph [add_common_node_hardware_type_analysis_pass] 
+INFO       
+Node name    Fx Node op     Type    Tool Chain      Device ID
+-----------  -------------  ------  ------------  -----------
+fc1          call_module    fixed   INTERNAL               -1
+relu         call_function  fixed   INTERNAL               -1
+fc2          call_module    fixed   INTERNAL               -1
+relu_1       call_function  fixed   INTERNAL               -1
+fc3          call_module    fixed   INTERNAL               -1 
+INFO       Emitting Verilog... 
+INFO       Project path: /home/zixian/.mase/top 
+INFO       Emitting BRAM... 
+DEBUG      Emitting DAT file for node: fc1, parameter: weight 
+DEBUG      ROM module weight successfully written into /home/zixian/.mase/top/hardware/rtl/fc1_weight_source.sv 
+sh: 1: verible-verilog-format: not found
+DEBUG      Init data weight successfully written into /home/zixian/.mase/top/hardware/rtl/fc1_weight_rom.dat 
+DEBUG      Emitting DAT file for node: fc1, parameter: bias 
+DEBUG      ROM module bias successfully written into /home/zixian/.mase/top/hardware/rtl/fc1_bias_source.sv 
+sh: 1: verible-verilog-format: not found
+DEBUG      Init data bias successfully written into /home/zixian/.mase/top/hardware/rtl/fc1_bias_rom.dat 
+DEBUG      Emitting DAT file for node: fc2, parameter: weight 
+DEBUG      ROM module weight successfully written into /home/zixian/.mase/top/hardware/rtl/fc2_weight_source.sv 
+sh: 1: verible-verilog-format: not found
+DEBUG      Init data weight successfully written into /home/zixian/.mase/top/hardware/rtl/fc2_weight_rom.dat 
+DEBUG      Emitting DAT file for node: fc2, parameter: bias 
+DEBUG      ROM module bias successfully written into /home/zixian/.mase/top/hardware/rtl/fc2_bias_source.sv 
+sh: 1: verible-verilog-format: not found
+DEBUG      Init data bias successfully written into /home/zixian/.mase/top/hardware/rtl/fc2_bias_rom.dat 
+DEBUG      Emitting DAT file for node: fc3, parameter: weight 
+DEBUG      ROM module weight successfully written into /home/zixian/.mase/top/hardware/rtl/fc3_weight_source.sv 
+sh: 1: verible-verilog-format: not found
+DEBUG      Init data weight successfully written into /home/zixian/.mase/top/hardware/rtl/fc3_weight_rom.dat 
+DEBUG      Emitting DAT file for node: fc3, parameter: bias 
+DEBUG      ROM module bias successfully written into /home/zixian/.mase/top/hardware/rtl/fc3_bias_source.sv 
+sh: 1: verible-verilog-format: not found
+DEBUG      Init data bias successfully written into /home/zixian/.mase/top/hardware/rtl/fc3_bias_rom.dat 
+INFO       Emitting internal components... 
+INFO       Running hardware simulation using Cocotb 
+DEBUG      test verilog pass pass_args = {} 
+{'__name__': 'chop.passes.graph.analysis.verilog.test_verilog', '__doc__': None, '__package__': 'chop.passes.graph.analysis.verilog', '__loader__': <_frozen_importlib_external.SourceFileLoader object at 0x7f66f3589a30>, '__spec__': ModuleSpec(name='chop.passes.graph.analysis.verilog.test_verilog', loader=<_frozen_importlib_external.SourceFileLoader object at 0x7f66f3589a30>, origin='/home/zixian/Mase-DeepWok/machop/chop/passes/graph/analysis/verilog/test_verilog.py'), '__file__': '/home/zixian/Mase-DeepWok/machop/chop/passes/graph/analysis/verilog/test_verilog.py', '__cached__': '/home/zixian/Mase-DeepWok/machop/chop/passes/graph/analysis/verilog/__pycache__/test_verilog.cpython-312.pyc', '__builtins__': {'__name__': 'builtins', '__doc__': "Built-in functions, types, exceptions, and other objects.\n\nThis module provides direct access to all 'built-in'\nidentifiers of Python; for example, builtins.len is\nthe full name for the built-in function len().\n\nThis module is not normally accessed explicitly by most\napplications, but can be useful in modules that provide\nobjects with the same name as a built-in value, but in\nwhich the built-in of that name is also needed.", '__package__': '', '__loader__': <class '_frozen_importlib.BuiltinImporter'>, '__spec__': ModuleSpec(name='builtins', loader=<class '_frozen_importlib.BuiltinImporter'>, origin='built-in'), '__build_class__': <built-in function __build_class__>, '__import__': <built-in function __import__>, 'abs': <built-in function abs>, 'all': <built-in function all>, 'any': <built-in function any>, 'ascii': <built-in function ascii>, 'bin': <built-in function bin>, 'breakpoint': <built-in function breakpoint>, 'callable': <built-in function callable>, 'chr': <built-in function chr>, 'compile': <built-in function compile>, 'delattr': <built-in function delattr>, 'dir': <built-in function dir>, 'divmod': <built-in function divmod>, 'eval': <built-in function eval>, 'exec': <built-in function exec>, 'format': <built-in function format>, 'getattr': <built-in function getattr>, 'globals': <built-in function globals>, 'hasattr': <built-in function hasattr>, 'hash': <built-in function hash>, 'hex': <built-in function hex>, 'id': <built-in function id>, 'input': <built-in function input>, 'isinstance': <built-in function isinstance>, 'issubclass': <built-in function issubclass>, 'iter': <built-in function iter>, 'aiter': <built-in function aiter>, 'len': <built-in function len>, 'locals': <built-in function locals>, 'max': <built-in function max>, 'min': <built-in function min>, 'next': <built-in function next>, 'anext': <built-in function anext>, 'oct': <built-in function oct>, 'ord': <built-in function ord>, 'pow': <built-in function pow>, 'print': <built-in function print>, 'repr': <built-in function repr>, 'round': <built-in function round>, 'setattr': <built-in function setattr>, 'sorted': <built-in function sorted>, 'sum': <built-in function sum>, 'vars': <built-in function vars>, 'None': None, 'Ellipsis': Ellipsis, 'NotImplemented': NotImplemented, 'False': False, 'True': True, 'bool': <class 'bool'>, 'memoryview': <class 'memoryview'>, 'bytearray': <class 'bytearray'>, 'bytes': <class 'bytes'>, 'classmethod': <class 'classmethod'>, 'complex': <class 'complex'>, 'dict': <class 'dict'>, 'enumerate': <class 'enumerate'>, 'filter': <class 'filter'>, 'float': <class 'float'>, 'frozenset': <class 'frozenset'>, 'property': <class 'property'>, 'int': <class 'int'>, 'list': <class 'list'>, 'map': <class 'map'>, 'object': <class 'object'>, 'range': <class 'range'>, 'reversed': <class 'reversed'>, 'set': <class 'set'>, 'slice': <class 'slice'>, 'staticmethod': <class 'staticmethod'>, 'str': <class 'str'>, 'super': <class 'super'>, 'tuple': <class 'tuple'>, 'type': <class 'type'>, 'zip': <class 'zip'>, '__debug__': True, 'BaseException': <class 'BaseException'>, 'BaseExceptionGroup': <class 'BaseExceptionGroup'>, 'Exception': <class 'Exception'>, 'GeneratorExit': <class 'GeneratorExit'>, 'KeyboardInterrupt': <class 'KeyboardInterrupt'>, 'SystemExit': <class 'SystemExit'>, 'ArithmeticError': <class 'ArithmeticError'>, 'AssertionError': <class 'AssertionError'>, 'AttributeError': <class 'AttributeError'>, 'BufferError': <class 'BufferError'>, 'EOFError': <class 'EOFError'>, 'ImportError': <class 'ImportError'>, 'LookupError': <class 'LookupError'>, 'MemoryError': <class 'MemoryError'>, 'NameError': <class 'NameError'>, 'OSError': <class 'OSError'>, 'ReferenceError': <class 'ReferenceError'>, 'RuntimeError': <class 'RuntimeError'>, 'StopAsyncIteration': <class 'StopAsyncIteration'>, 'StopIteration': <class 'StopIteration'>, 'SyntaxError': <class 'SyntaxError'>, 'SystemError': <class 'SystemError'>, 'TypeError': <class 'TypeError'>, 'ValueError': <class 'ValueError'>, 'Warning': <class 'Warning'>, 'FloatingPointError': <class 'FloatingPointError'>, 'OverflowError': <class 'OverflowError'>, 'ZeroDivisionError': <class 'ZeroDivisionError'>, 'BytesWarning': <class 'BytesWarning'>, 'DeprecationWarning': <class 'DeprecationWarning'>, 'EncodingWarning': <class 'EncodingWarning'>, 'FutureWarning': <class 'FutureWarning'>, 'ImportWarning': <class 'ImportWarning'>, 'PendingDeprecationWarning': <class 'PendingDeprecationWarning'>, 'ResourceWarning': <class 'ResourceWarning'>, 'RuntimeWarning': <class 'RuntimeWarning'>, 'SyntaxWarning': <class 'SyntaxWarning'>, 'UnicodeWarning': <class 'UnicodeWarning'>, 'UserWarning': <class 'UserWarning'>, 'BlockingIOError': <class 'BlockingIOError'>, 'ChildProcessError': <class 'ChildProcessError'>, 'ConnectionError': <class 'ConnectionError'>, 'FileExistsError': <class 'FileExistsError'>, 'FileNotFoundError': <class 'FileNotFoundError'>, 'InterruptedError': <class 'InterruptedError'>, 'IsADirectoryError': <class 'IsADirectoryError'>, 'NotADirectoryError': <class 'NotADirectoryError'>, 'PermissionError': <class 'PermissionError'>, 'ProcessLookupError': <class 'ProcessLookupError'>, 'TimeoutError': <class 'TimeoutError'>, 'IndentationError': <class 'IndentationError'>, 'IndexError': <class 'IndexError'>, 'KeyError': <class 'KeyError'>, 'ModuleNotFoundError': <class 'ModuleNotFoundError'>, 'NotImplementedError': <class 'NotImplementedError'>, 'RecursionError': <class 'RecursionError'>, 'UnboundLocalError': <class 'UnboundLocalError'>, 'UnicodeError': <class 'UnicodeError'>, 'BrokenPipeError': <class 'BrokenPipeError'>, 'ConnectionAbortedError': <class 'ConnectionAbortedError'>, 'ConnectionRefusedError': <class 'ConnectionRefusedError'>, 'ConnectionResetError': <class 'ConnectionResetError'>, 'TabError': <class 'TabError'>, 'UnicodeDecodeError': <class 'UnicodeDecodeError'>, 'UnicodeEncodeError': <class 'UnicodeEncodeError'>, 'UnicodeTranslateError': <class 'UnicodeTranslateError'>, 'ExceptionGroup': <class 'ExceptionGroup'>, 'EnvironmentError': <class 'OSError'>, 'IOError': <class 'OSError'>, 'open': <built-in function open>, 'quit': Use quit() or Ctrl-D (i.e. EOF) to exit, 'exit': Use exit() or Ctrl-D (i.e. EOF) to exit, 'copyright': Copyright (c) 2001-2023 Python Software Foundation.
+All Rights Reserved.
+
+Copyright (c) 2000 BeOpen.com.
+All Rights Reserved.
+
+Copyright (c) 1995-2001 Corporation for National Research Initiatives.
+All Rights Reserved.
+
+Copyright (c) 1991-1995 Stichting Mathematisch Centrum, Amsterdam.
+All Rights Reserved., 'credits':     Thanks to CWI, CNRI, BeOpen.com, Zope Corporation and a cast of thousands
+    for supporting Python development.  See www.python.org for more information., 'license': Type license() to see the full license text, 'help': Type help() for interactive help, or help(object) for help about object., '__pybind11_internals_v4_gcc_libstdcpp_cxxabi1017__': <capsule object NULL at 0x7f670f78ecd0>}, 'logging': <module 'logging' from '/home/zixian/miniconda3/envs/py_adls/lib/python3.12/logging/__init__.py'>, 'toml': <module 'toml' from '/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/toml/__init__.py'>, 'os': <module 'os' (frozen)>, 'glob': <module 'glob' from '/home/zixian/miniconda3/envs/py_adls/lib/python3.12/glob.py'>, 'math': <module 'math' from '/home/zixian/miniconda3/envs/py_adls/lib/python3.12/lib-dynload/math.cpython-312-x86_64-linux-gnu.so'>, 'Path': <class 'pathlib.Path'>, 'torch': <module 'torch' from '/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/torch/__init__.py'>, 'cocotb': <module 'cocotb' from '/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/cocotb/__init__.py'>, '__warningregistry__': {'version': 63, ('Python runners and associated APIs are an experimental feature and subject to change.', <class 'UserWarning'>, 6): True}, 'get_runner': <function get_runner at 0x7f66f35b8860>, 'Timer': <class 'cocotb.triggers.Timer'>, 'FallingEdge': <class 'cocotb.triggers.FallingEdge'>, 'Clock': <class 'cocotb.clock.Clock'>, 'vf': <function vf at 0x7f670e212980>, 'RandomSource': <class 'mase_cocotb.random_test.RandomSource'>, 'RandomSink': <class 'mase_cocotb.random_test.RandomSink'>, 'check_results': <function check_results at 0x7f66f35b8d60>, 'logger': <Logger chop.passes.graph.analysis.verilog.test_verilog (DEBUG)>, 'hardware_reshape': <function hardware_reshape at 0x7f66f3595bc0>, 'VerificationCase': <class 'chop.passes.graph.analysis.verilog.test_verilog.VerificationCase'>, 'TestBehavior': <class 'chop.passes.graph.analysis.verilog.test_verilog.TestBehavior'>, 'test_top': <cocotb.decorators.test object at 0x7f66f35a67b0>, 'get_dut_parameters': <function get_dut_parameters at 0x7f66f35ba520>, 'runner': <function runner at 0x7f66f35ba8e0>, 'test_verilog_analysis_pass': <function test_verilog_analysis_pass at 0x7f66f35ba980>, 'test_verilog_analysis_pass_tc': <chop.passes.graph.analysis.verilog.test_verilog.VerificationCase object at 0x7f66de7b0aa0>}
+DEBUG      {'data_in_0': tensor([[21, 13, 12, 13, 24, 14, 12,  6, 24, 18, 13,  4, 11, 29,  8,  6,  7, 31,
+         10, 22, 25, 25,  2, 14, 10]])} 
+DEBUG      Test data saved to /home/zixian/.mase/tv.toml 
+DEBUG      ['-Gfc1_DATA_IN_0_PRECISION_0=8', '-Gfc1_DATA_IN_0_PRECISION_1=3', '-Gfc1_DATA_IN_0_TENSOR_SIZE_DIM_0=25', '-Gfc1_DATA_IN_0_PARALLELISM_DIM_0=1', '-Gfc1_DATA_IN_0_TENSOR_SIZE_DIM_1=1', '-Gfc1_DATA_IN_0_PARALLELISM_DIM_1=1', '-Gfc1_WEIGHT_PRECISION_0=8', '-Gfc1_WEIGHT_PRECISION_1=3', '-Gfc1_WEIGHT_TENSOR_SIZE_DIM_0=25', '-Gfc1_WEIGHT_PARALLELISM_DIM_0=1', '-Gfc1_WEIGHT_TENSOR_SIZE_DIM_1=25', '-Gfc1_WEIGHT_PARALLELISM_DIM_1=1', '-Gfc1_BIAS_PRECISION_0=8', '-Gfc1_BIAS_PRECISION_1=3', '-Gfc1_BIAS_TENSOR_SIZE_DIM_0=25', '-Gfc1_BIAS_PARALLELISM_DIM_0=1', '-Gfc1_DATA_OUT_0_PRECISION_0=4', '-Gfc1_DATA_OUT_0_PRECISION_1=2', '-Gfc1_DATA_OUT_0_TENSOR_SIZE_DIM_0=25', '-Gfc1_DATA_OUT_0_PARALLELISM_DIM_0=1', '-Gfc1_DATA_OUT_0_TENSOR_SIZE_DIM_1=1', '-Gfc1_DATA_OUT_0_PARALLELISM_DIM_1=1', '-Grelu_DATA_IN_0_PRECISION_0=4', '-Grelu_DATA_IN_0_PRECISION_1=2', '-Grelu_DATA_IN_0_TENSOR_SIZE_DIM_0=25', '-Grelu_DATA_IN_0_PARALLELISM_DIM_0=1', '-Grelu_DATA_IN_0_TENSOR_SIZE_DIM_1=1', '-Grelu_DATA_IN_0_PARALLELISM_DIM_1=1', '-Grelu_INPLACE=0', '-Grelu_DATA_OUT_0_PRECISION_0=8', '-Grelu_DATA_OUT_0_PRECISION_1=3', '-Grelu_DATA_OUT_0_TENSOR_SIZE_DIM_0=25', '-Grelu_DATA_OUT_0_PARALLELISM_DIM_0=1', '-Grelu_DATA_OUT_0_TENSOR_SIZE_DIM_1=1', '-Grelu_DATA_OUT_0_PARALLELISM_DIM_1=1', '-Gfc2_DATA_IN_0_PRECISION_0=8', '-Gfc2_DATA_IN_0_PRECISION_1=3', '-Gfc2_DATA_IN_0_TENSOR_SIZE_DIM_0=25', '-Gfc2_DATA_IN_0_PARALLELISM_DIM_0=1', '-Gfc2_DATA_IN_0_TENSOR_SIZE_DIM_1=1', '-Gfc2_DATA_IN_0_PARALLELISM_DIM_1=1', '-Gfc2_WEIGHT_PRECISION_0=8', '-Gfc2_WEIGHT_PRECISION_1=3', '-Gfc2_WEIGHT_TENSOR_SIZE_DIM_0=25', '-Gfc2_WEIGHT_PARALLELISM_DIM_0=1', '-Gfc2_WEIGHT_TENSOR_SIZE_DIM_1=100', '-Gfc2_WEIGHT_PARALLELISM_DIM_1=1', '-Gfc2_BIAS_PRECISION_0=8', '-Gfc2_BIAS_PRECISION_1=3', '-Gfc2_BIAS_TENSOR_SIZE_DIM_0=100', '-Gfc2_BIAS_PARALLELISM_DIM_0=1', '-Gfc2_DATA_OUT_0_PRECISION_0=4', '-Gfc2_DATA_OUT_0_PRECISION_1=2', '-Gfc2_DATA_OUT_0_TENSOR_SIZE_DIM_0=100', '-Gfc2_DATA_OUT_0_PARALLELISM_DIM_0=1', '-Gfc2_DATA_OUT_0_TENSOR_SIZE_DIM_1=1', '-Gfc2_DATA_OUT_0_PARALLELISM_DIM_1=1', '-Grelu_1_DATA_IN_0_PRECISION_0=4', '-Grelu_1_DATA_IN_0_PRECISION_1=2', '-Grelu_1_DATA_IN_0_TENSOR_SIZE_DIM_0=100', '-Grelu_1_DATA_IN_0_PARALLELISM_DIM_0=1', '-Grelu_1_DATA_IN_0_TENSOR_SIZE_DIM_1=1', '-Grelu_1_DATA_IN_0_PARALLELISM_DIM_1=1', '-Grelu_1_INPLACE=0', '-Grelu_1_DATA_OUT_0_PRECISION_0=8', '-Grelu_1_DATA_OUT_0_PRECISION_1=3', '-Grelu_1_DATA_OUT_0_TENSOR_SIZE_DIM_0=100', '-Grelu_1_DATA_OUT_0_PARALLELISM_DIM_0=1', '-Grelu_1_DATA_OUT_0_TENSOR_SIZE_DIM_1=1', '-Grelu_1_DATA_OUT_0_PARALLELISM_DIM_1=1', '-Gfc3_DATA_IN_0_PRECISION_0=8', '-Gfc3_DATA_IN_0_PRECISION_1=3', '-Gfc3_DATA_IN_0_TENSOR_SIZE_DIM_0=100', '-Gfc3_DATA_IN_0_PARALLELISM_DIM_0=1', '-Gfc3_DATA_IN_0_TENSOR_SIZE_DIM_1=1', '-Gfc3_DATA_IN_0_PARALLELISM_DIM_1=1', '-Gfc3_WEIGHT_PRECISION_0=8', '-Gfc3_WEIGHT_PRECISION_1=3', '-Gfc3_WEIGHT_TENSOR_SIZE_DIM_0=100', '-Gfc3_WEIGHT_PARALLELISM_DIM_0=1', '-Gfc3_WEIGHT_TENSOR_SIZE_DIM_1=10', '-Gfc3_WEIGHT_PARALLELISM_DIM_1=1', '-Gfc3_BIAS_PRECISION_0=8', '-Gfc3_BIAS_PRECISION_1=3', '-Gfc3_BIAS_TENSOR_SIZE_DIM_0=10', '-Gfc3_BIAS_PARALLELISM_DIM_0=1', '-Gfc3_DATA_OUT_0_PRECISION_0=8', '-Gfc3_DATA_OUT_0_PRECISION_1=3', '-Gfc3_DATA_OUT_0_TENSOR_SIZE_DIM_0=10', '-Gfc3_DATA_OUT_0_PARALLELISM_DIM_0=1', '-Gfc3_DATA_OUT_0_TENSOR_SIZE_DIM_1=1', '-Gfc3_DATA_OUT_0_PARALLELISM_DIM_1=1'] 
+INFO: Running command perl /usr/local/bin/verilator -cc --exe -Mdir /home/zixian/sim_build -DCOCOTB_SIM=1 --top-module top --vpi --public-flat-rw --prefix Vtop -o top -LDFLAGS '-Wl,-rpath,/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/cocotb/libs -L/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/cocotb/libs -lcocotbvpi_verilator' -Gfc1_DATA_IN_0_PRECISION_0=8 -Gfc1_DATA_IN_0_PRECISION_1=3 -Gfc1_DATA_IN_0_TENSOR_SIZE_DIM_0=25 -Gfc1_DATA_IN_0_PARALLELISM_DIM_0=1 -Gfc1_DATA_IN_0_TENSOR_SIZE_DIM_1=1 -Gfc1_DATA_IN_0_PARALLELISM_DIM_1=1 -Gfc1_WEIGHT_PRECISION_0=8 -Gfc1_WEIGHT_PRECISION_1=3 -Gfc1_WEIGHT_TENSOR_SIZE_DIM_0=25 -Gfc1_WEIGHT_PARALLELISM_DIM_0=1 -Gfc1_WEIGHT_TENSOR_SIZE_DIM_1=25 -Gfc1_WEIGHT_PARALLELISM_DIM_1=1 -Gfc1_BIAS_PRECISION_0=8 -Gfc1_BIAS_PRECISION_1=3 -Gfc1_BIAS_TENSOR_SIZE_DIM_0=25 -Gfc1_BIAS_PARALLELISM_DIM_0=1 -Gfc1_DATA_OUT_0_PRECISION_0=4 -Gfc1_DATA_OUT_0_PRECISION_1=2 -Gfc1_DATA_OUT_0_TENSOR_SIZE_DIM_0=25 -Gfc1_DATA_OUT_0_PARALLELISM_DIM_0=1 -Gfc1_DATA_OUT_0_TENSOR_SIZE_DIM_1=1 -Gfc1_DATA_OUT_0_PARALLELISM_DIM_1=1 -Grelu_DATA_IN_0_PRECISION_0=4 -Grelu_DATA_IN_0_PRECISION_1=2 -Grelu_DATA_IN_0_TENSOR_SIZE_DIM_0=25 -Grelu_DATA_IN_0_PARALLELISM_DIM_0=1 -Grelu_DATA_IN_0_TENSOR_SIZE_DIM_1=1 -Grelu_DATA_IN_0_PARALLELISM_DIM_1=1 -Grelu_INPLACE=0 -Grelu_DATA_OUT_0_PRECISION_0=8 -Grelu_DATA_OUT_0_PRECISION_1=3 -Grelu_DATA_OUT_0_TENSOR_SIZE_DIM_0=25 -Grelu_DATA_OUT_0_PARALLELISM_DIM_0=1 -Grelu_DATA_OUT_0_TENSOR_SIZE_DIM_1=1 -Grelu_DATA_OUT_0_PARALLELISM_DIM_1=1 -Gfc2_DATA_IN_0_PRECISION_0=8 -Gfc2_DATA_IN_0_PRECISION_1=3 -Gfc2_DATA_IN_0_TENSOR_SIZE_DIM_0=25 -Gfc2_DATA_IN_0_PARALLELISM_DIM_0=1 -Gfc2_DATA_IN_0_TENSOR_SIZE_DIM_1=1 -Gfc2_DATA_IN_0_PARALLELISM_DIM_1=1 -Gfc2_WEIGHT_PRECISION_0=8 -Gfc2_WEIGHT_PRECISION_1=3 -Gfc2_WEIGHT_TENSOR_SIZE_DIM_0=25 -Gfc2_WEIGHT_PARALLELISM_DIM_0=1 -Gfc2_WEIGHT_TENSOR_SIZE_DIM_1=100 -Gfc2_WEIGHT_PARALLELISM_DIM_1=1 -Gfc2_BIAS_PRECISION_0=8 -Gfc2_BIAS_PRECISION_1=3 -Gfc2_BIAS_TENSOR_SIZE_DIM_0=100 -Gfc2_BIAS_PARALLELISM_DIM_0=1 -Gfc2_DATA_OUT_0_PRECISION_0=4 -Gfc2_DATA_OUT_0_PRECISION_1=2 -Gfc2_DATA_OUT_0_TENSOR_SIZE_DIM_0=100 -Gfc2_DATA_OUT_0_PARALLELISM_DIM_0=1 -Gfc2_DATA_OUT_0_TENSOR_SIZE_DIM_1=1 -Gfc2_DATA_OUT_0_PARALLELISM_DIM_1=1 -Grelu_1_DATA_IN_0_PRECISION_0=4 -Grelu_1_DATA_IN_0_PRECISION_1=2 -Grelu_1_DATA_IN_0_TENSOR_SIZE_DIM_0=100 -Grelu_1_DATA_IN_0_PARALLELISM_DIM_0=1 -Grelu_1_DATA_IN_0_TENSOR_SIZE_DIM_1=1 -Grelu_1_DATA_IN_0_PARALLELISM_DIM_1=1 -Grelu_1_INPLACE=0 -Grelu_1_DATA_OUT_0_PRECISION_0=8 -Grelu_1_DATA_OUT_0_PRECISION_1=3 -Grelu_1_DATA_OUT_0_TENSOR_SIZE_DIM_0=100 -Grelu_1_DATA_OUT_0_PARALLELISM_DIM_0=1 -Grelu_1_DATA_OUT_0_TENSOR_SIZE_DIM_1=1 -Grelu_1_DATA_OUT_0_PARALLELISM_DIM_1=1 -Gfc3_DATA_IN_0_PRECISION_0=8 -Gfc3_DATA_IN_0_PRECISION_1=3 -Gfc3_DATA_IN_0_TENSOR_SIZE_DIM_0=100 -Gfc3_DATA_IN_0_PARALLELISM_DIM_0=1 -Gfc3_DATA_IN_0_TENSOR_SIZE_DIM_1=1 -Gfc3_DATA_IN_0_PARALLELISM_DIM_1=1 -Gfc3_WEIGHT_PRECISION_0=8 -Gfc3_WEIGHT_PRECISION_1=3 -Gfc3_WEIGHT_TENSOR_SIZE_DIM_0=100 -Gfc3_WEIGHT_PARALLELISM_DIM_0=1 -Gfc3_WEIGHT_TENSOR_SIZE_DIM_1=10 -Gfc3_WEIGHT_PARALLELISM_DIM_1=1 -Gfc3_BIAS_PRECISION_0=8 -Gfc3_BIAS_PRECISION_1=3 -Gfc3_BIAS_TENSOR_SIZE_DIM_0=10 -Gfc3_BIAS_PARALLELISM_DIM_0=1 -Gfc3_DATA_OUT_0_PRECISION_0=8 -Gfc3_DATA_OUT_0_PRECISION_1=3 -Gfc3_DATA_OUT_0_TENSOR_SIZE_DIM_0=10 -Gfc3_DATA_OUT_0_PARALLELISM_DIM_0=1 -Gfc3_DATA_OUT_0_TENSOR_SIZE_DIM_1=1 -Gfc3_DATA_OUT_0_PARALLELISM_DIM_1=1 /home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/cocotb/share/lib/verilator/verilator.cpp /home/zixian/.mase/top/hardware/rtl/fixed_accumulator.sv /home/zixian/.mase/top/hardware/rtl/fc1_bias_source.sv /home/zixian/.mase/top/hardware/rtl/fixed_adder_tree.sv /home/zixian/.mase/top/hardware/rtl/register_slice.sv /home/zixian/.mase/top/hardware/rtl/fixed_rounding.sv /home/zixian/.mase/top/hardware/rtl/fixed_relu.sv /home/zixian/.mase/top/hardware/rtl/join2.sv /home/zixian/.mase/top/hardware/rtl/fc3_weight_source.sv /home/zixian/.mase/top/hardware/rtl/fixed_cast.sv /home/zixian/.mase/top/hardware/rtl/fixed_mult.sv /home/zixian/.mase/top/hardware/rtl/fc1_weight_source.sv /home/zixian/.mase/top/hardware/rtl/fixed_adder_tree_layer.sv /home/zixian/.mase/top/hardware/rtl/top_df.sv /home/zixian/.mase/top/hardware/rtl/skid_buffer.sv /home/zixian/.mase/top/hardware/rtl/fc2_bias_source.sv /home/zixian/.mase/top/hardware/rtl/fc2_weight_source.sv /home/zixian/.mase/top/hardware/rtl/fixed_linear.sv /home/zixian/.mase/top/hardware/rtl/fixed_vector_mult.sv /home/zixian/.mase/top/hardware/rtl/fixed_round.sv /home/zixian/.mase/top/hardware/rtl/top.sv /home/zixian/.mase/top/hardware/rtl/fc3_bias_source.sv /home/zixian/.mase/top/hardware/rtl/fixed_dot_product.sv in directory /home/zixian/sim_build
+INFO: Running command make -C /home/zixian/sim_build -f Vtop.mk in directory /home/zixian/sim_build
+make: Entering directory '/home/zixian/sim_build'
+ccache g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow       -Os -c -o verilator.o /home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/cocotb/share/lib/verilator/verilator.cpp
+ccache g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow       -Os -c -o verilated.o /usr/local/share/verilator/include/verilated.cpp
+ccache g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow       -Os -c -o verilated_dpi.o /usr/local/share/verilator/include/verilated_dpi.cpp
+ccache g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow       -Os -c -o verilated_vpi.o /usr/local/share/verilator/include/verilated_vpi.cpp
+ccache g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow       -Os -c -o verilated_threads.o /usr/local/share/verilator/include/verilated_threads.cpp
+/home/zixian/miniconda3/bin/python3 /usr/local/share/verilator/bin/verilator_includer -DVL_INCLUDE_OPT=include Vtop.cpp Vtop___024root__DepSet_h84412442__0.cpp Vtop___024root__DepSet_heccd7ead__0.cpp Vtop__Dpi.cpp Vtop__ConstPool_0.cpp Vtop___024root__Slow.cpp Vtop___024root__DepSet_h84412442__0__Slow.cpp Vtop___024root__DepSet_heccd7ead__0__Slow.cpp Vtop__Syms.cpp > Vtop__ALL.cpp
+ccache g++  -I.  -MMD -I/usr/local/share/verilator/include -I/usr/local/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable -Wno-shadow       -Os -c -o Vtop__ALL.o Vtop__ALL.cpp
+echo "" > Vtop__ALL.verilator_deplist.tmp
+Archive ar -rcs Vtop__ALL.a Vtop__ALL.o
+g++    verilator.o verilated.o verilated_dpi.o verilated_vpi.o verilated_threads.o Vtop__ALL.a   -Wl,-rpath,/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/cocotb/libs -L/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/cocotb/libs -lcocotbvpi_verilator  -pthread -lpthread -latomic   -o top
+rm Vtop__ALL.verilator_deplist.tmp
+make: Leaving directory '/home/zixian/sim_build'
+INFO: Running command /home/zixian/sim_build/top in directory /home/zixian/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:76   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Verilator version 5.006 2023-01-22
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.8.0 from /home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1716633057
+/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/_pytest/assertion/rewrite.py:175: DeprecationWarning: 'pipes' is deprecated and slated for removal in Python 3.13
+  exec(co, module.__dict__)
+     0.00ns [41m[30mCRITICAL[49m[39m cocotb.regression                  [41m[30mFailed to import module chop.passes.graph.analysis.verilog.test_verilog: /lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.29' not found (required by /home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/sentencepiece/_sentencepiece.cpython-312-x86_64-linux-gnu.so)[49m[39m
+     0.00ns INFO     cocotb.regression                  MODULE variable was "chop.passes.graph.analysis.verilog.test_verilog"
+     0.00ns INFO     cocotb.regression                  Traceback: 
+     0.00ns INFO     cocotb.regression                  Traceback (most recent call last):
+                                                          File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/cocotb/regression.py", line 203, in _discover_tests
+                                                            module = _my_import(module_name)
+                                                                     ^^^^^^^^^^^^^^^^^^^^^^^
+                                                          File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/cocotb/regression.py", line 72, in _my_import
+                                                            mod = __import__(name)
+                                                                  ^^^^^^^^^^^^^^^^
+                                                          File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/_pytest/assertion/rewrite.py", line 175, in exec_module
+                                                            exec(co, module.__dict__)
+                                                          File "/home/zixian/Mase-DeepWok/machop/chop/__init__.py", line 1, in <module>
+                                                            from .tools.logger import root_logger
+                                                          File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/_pytest/assertion/rewrite.py", line 175, in exec_module
+                                                            exec(co, module.__dict__)
+                                                          File "/home/zixian/Mase-DeepWok/machop/chop/tools/__init__.py", line 11, in <module>
+                                                            from .get_input import get_cf_args, get_dummy_input
+                                                          File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/_pytest/assertion/rewrite.py", line 175, in exec_module
+                                                            exec(co, module.__dict__)
+                                                          File "/home/zixian/Mase-DeepWok/machop/chop/tools/get_input.py", line 3, in <module>
+                                                            from ..models.utils import ModelSource
+                                                          File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/_pytest/assertion/rewrite.py", line 175, in exec_module
+                                                            exec(co, module.__dict__)
+                                                          File "/home/zixian/Mase-DeepWok/machop/chop/models/__init__.py", line 6, in <module>
+                                                            from .patched import (
+                                                          File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/_pytest/assertion/rewrite.py", line 175, in exec_module
+                                                            exec(co, module.__dict__)
+                                                          File "/home/zixian/Mase-DeepWok/machop/chop/models/patched/__init__.py", line 2, in <module>
+                                                            from .opt_patched import (
+                                                          File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/_pytest/assertion/rewrite.py", line 175, in exec_module
+                                                            exec(co, module.__dict__)
+                                                          File "/home/zixian/Mase-DeepWok/machop/chop/models/patched/opt_patched/__init__.py", line 1, in <module>
+                                                            from transformers.models.gpt2 import GPT2Tokenizer
+                                                          File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/_pytest/assertion/rewrite.py", line 175, in exec_module
+                                                            exec(co, module.__dict__)
+                                                          File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/transformers/models/__init__.py", line 15, in <module>
+                                                            from . import (
+                                                          File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/_pytest/assertion/rewrite.py", line 175, in exec_module
+                                                            exec(co, module.__dict__)
+                                                          File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/transformers/models/mt5/__init__.py", line 29, in <module>
+                                                            from ..t5.tokenization_t5 import T5Tokenizer
+                                                          File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/_pytest/assertion/rewrite.py", line 175, in exec_module
+                                                            exec(co, module.__dict__)
+                                                          File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/transformers/models/t5/tokenization_t5.py", line 24, in <module>
+                                                            import sentencepiece as spm
+                                                          File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/_pytest/assertion/rewrite.py", line 175, in exec_module
+                                                            exec(co, module.__dict__)
+                                                          File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/sentencepiece/__init__.py", line 13, in <module>
+                                                            from . import _sentencepiece
+                                                        ImportError: /lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.29' not found (required by /home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/sentencepiece/_sentencepiece.cpython-312-x86_64-linux-gnu.so)
+                                                        
+Traceback (most recent call last):
+  File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/cocotb/__init__.py", line 233, in _initialise_testbench
+    _initialise_testbench_(argv_)
+  File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/cocotb/__init__.py", line 316, in _initialise_testbench_
+    regression_manager = RegressionManager.from_discovery(top)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/cocotb/regression.py", line 174, in from_discovery
+    return cls(dut, tests)
+           ^^^^^^^^^^^^^^^
+  File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/cocotb/regression.py", line 153, in __init__
+    for test in tests:
+  File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/cocotb/regression.py", line 203, in _discover_tests
+    module = _my_import(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/cocotb/regression.py", line 72, in _my_import
+    mod = __import__(name)
+          ^^^^^^^^^^^^^^^^
+  File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/_pytest/assertion/rewrite.py", line 175, in exec_module
+    exec(co, module.__dict__)
+  File "/home/zixian/Mase-DeepWok/machop/chop/__init__.py", line 1, in <module>
+    from .tools.logger import root_logger
+  File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/_pytest/assertion/rewrite.py", line 175, in exec_module
+    exec(co, module.__dict__)
+  File "/home/zixian/Mase-DeepWok/machop/chop/tools/__init__.py", line 11, in <module>
+    from .get_input import get_cf_args, get_dummy_input
+  File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/_pytest/assertion/rewrite.py", line 175, in exec_module
+    exec(co, module.__dict__)
+  File "/home/zixian/Mase-DeepWok/machop/chop/tools/get_input.py", line 3, in <module>
+    from ..models.utils import ModelSource
+  File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/_pytest/assertion/rewrite.py", line 175, in exec_module
+    exec(co, module.__dict__)
+  File "/home/zixian/Mase-DeepWok/machop/chop/models/__init__.py", line 6, in <module>
+    from .patched import (
+  File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/_pytest/assertion/rewrite.py", line 175, in exec_module
+    exec(co, module.__dict__)
+  File "/home/zixian/Mase-DeepWok/machop/chop/models/patched/__init__.py", line 2, in <module>
+    from .opt_patched import (
+  File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/_pytest/assertion/rewrite.py", line 175, in exec_module
+    exec(co, module.__dict__)
+  File "/home/zixian/Mase-DeepWok/machop/chop/models/patched/opt_patched/__init__.py", line 1, in <module>
+    from transformers.models.gpt2 import GPT2Tokenizer
+  File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/_pytest/assertion/rewrite.py", line 175, in exec_module
+    exec(co, module.__dict__)
+  File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/transformers/models/__init__.py", line 15, in <module>
+    from . import (
+  File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/_pytest/assertion/rewrite.py", line 175, in exec_module
+    exec(co, module.__dict__)
+  File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/transformers/models/mt5/__init__.py", line 29, in <module>
+    from ..t5.tokenization_t5 import T5Tokenizer
+  File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/_pytest/assertion/rewrite.py", line 175, in exec_module
+    exec(co, module.__dict__)
+  File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/transformers/models/t5/tokenization_t5.py", line 24, in <module>
+    import sentencepiece as spm
+  File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/_pytest/assertion/rewrite.py", line 175, in exec_module
+    exec(co, module.__dict__)
+  File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/sentencepiece/__init__.py", line 13, in <module>
+    from . import _sentencepiece
+ImportError: /lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.29' not found (required by /home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/sentencepiece/_sentencepiece.cpython-312-x86_64-linux-gnu.so)
+Traceback (most recent call last):
+  File "/home/zixian/miniconda3/envs/py_adls/lib/python3.12/site-packages/cocotb/__init__.py", line 332, in _sim_event
+    scheduler.log.error(msg)
+    ^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'log'
+     0.00ns [31mERROR   [49m[39m gpi                                [31mPassing event to upper layer failed[49m[39m
+INFO: Results file: /home/zixian/sim_build/results.xml
+(py_adls) ]0;zixian@LAPTOP119010134: ~[01;32mzixian@LAPTOP119010134[00m:[01;34m~[00m$ exit
+exit
+
+Script done on 2024-05-25 11:31:08+01:00 [COMMAND_EXIT_CODE="0"]
