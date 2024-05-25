@@ -45,7 +45,10 @@ module fc2_weight #(
   output logic [DATA_WIDTH - 1:0] q0
 );
 
-  fc2_weight_rom fc2_weight_rom_U (
+  fc2_weight_rom #(
+      .DWIDTH (DATA_WIDTH),
+      .MEM_SIZE (ADDR_RANGE)
+  ) fc2_weight_rom_U (
       .clk(clk),
       .addr0(address0),
       .ce0(ce0),

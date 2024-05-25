@@ -45,7 +45,10 @@ module fc2_bias #(
   output logic [DATA_WIDTH - 1:0] q0
 );
 
-  fc2_bias_rom fc2_bias_rom_U (
+  fc2_bias_rom #(
+      .DWIDTH (DATA_WIDTH),
+      .MEM_SIZE (ADDR_RANGE)
+  ) fc2_bias_rom_U (
       .clk(clk),
       .addr0(address0),
       .ce0(ce0),

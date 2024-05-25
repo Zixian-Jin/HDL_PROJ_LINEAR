@@ -45,7 +45,10 @@ module fc3_bias #(
   output logic [DATA_WIDTH - 1:0] q0
 );
 
-  fc3_bias_rom fc3_bias_rom_U (
+  fc3_bias_rom #(
+      .DWIDTH (DATA_WIDTH),
+      .MEM_SIZE (ADDR_RANGE)
+  ) fc3_bias_rom_U (
       .clk(clk),
       .addr0(address0),
       .ce0(ce0),

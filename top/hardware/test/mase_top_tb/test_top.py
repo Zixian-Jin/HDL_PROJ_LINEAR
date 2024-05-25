@@ -31,13 +31,13 @@ class VerificationCase:
     def __init__(self, samples=10):
         self.data_in_width = 32
         self.data_in_frac_width = 0
-        self.data_in_rows = 1 # should be 25
+        self.data_in_rows = 3 # should be 25
         self.data_in_cols = 1
         
         self.data_out_width = 32
         self.data_out_frac_width = 0
         
-        self.iterations = 1  # not used for simple_matmul
+        self.iterations = 5  # not used for simple_matmul
         
         # self.has_bias = 1
 
@@ -245,8 +245,8 @@ def runner(project_dir, top_name):
     for v in glob.glob(os.path.join(project_dir, "hardware", "rtl", "*.sv")):
         sv_srcs.append(os.path.relpath(v, os.getcwd()))
     print(sv_srcs)
-    # p = MLP_PARAMS
-    p = {}
+    p = MLP_PARAMS
+    # p = {}
     # logger.debug(p)
 
     # set parameters
