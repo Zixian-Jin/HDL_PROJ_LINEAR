@@ -1,0 +1,21 @@
+// Verilated -*- C++ -*-
+// DESCRIPTION: Verilator output: Constant pool
+//
+
+#include "verilated.h"
+
+extern const VlWide<19>/*607:0*/ Vtop__ConstPool__CONST_h212da833_0 = {{
+    0x2e646174, 0x5f726f6d, 0x62696173, 0x6663315f,
+    0x6561722f, 0x5f6c696e, 0x69786564, 0x746c2f66,
+    0x72652f72, 0x72647761, 0x702f6861, 0x522f746f,
+    0x494e4541, 0x4f4a5f4c, 0x4c5f5052, 0x6e2f4844,
+    0x69786961, 0x6d652f7a, 0x002f686f
+}};
+
+extern const VlWide<20>/*639:0*/ Vtop__ConstPool__CONST_hdb092d69_0 = {{
+    0x2e646174, 0x5f726f6d, 0x69676874, 0x315f7765,
+    0x722f6663, 0x696e6561, 0x65645f6c, 0x2f666978,
+    0x2f72746c, 0x77617265, 0x68617264, 0x746f702f,
+    0x4541522f, 0x5f4c494e, 0x50524f4a, 0x48444c5f,
+    0x69616e2f, 0x2f7a6978, 0x686f6d65, 0x0000002f
+}};
